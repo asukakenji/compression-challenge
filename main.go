@@ -5,20 +5,33 @@ import (
 	"os"
 )
 
+// printHelp prints the usage help to standard error and terminates the process.
 func printHelp() {
-	fmt.Println("Usage: go run main.go [c|d] [0|1|2|3] < file")
-	fmt.Println("c for compress")
-	fmt.Println("d for decompress")
+	fmt.Fprintf(os.Stderr, "Usage:\n")
+	fmt.Fprintf(os.Stderr, "Compress:    %s [c] [0|1|2|3] < <file>\n", os.Args[0])
+	fmt.Fprintf(os.Stderr, "Decompress:  %s [d] [0|1|2|3] < <file>\n", os.Args[0])
+	fmt.Fprintf(os.Stderr, "Analyze:     %s [a] < <file>\n", os.Args[0])
+	os.Exit(1)
 }
 
 func main() {
-	if len(os.Args) < 3 {
+	args := os.Args[1:]
+	if len(args) < 1 {
 		printHelp()
-		os.Exit(0)
 	}
 	switch os.Args[1] {
+	case "a":
+		subargs := args[1:]
+		if len(subargs) != 0 {
+			printHelp()
+		}
+		analyze()
 	case "c":
-		switch os.Args[2] {
+		subargs := args[1:]
+		if len(subargs) != 1 {
+			printHelp()
+		}
+		switch subargs[0] {
 		case "0":
 			compress0()
 		case "1":
@@ -31,7 +44,11 @@ func main() {
 			printHelp()
 		}
 	case "d":
-		switch os.Args[2] {
+		subargs := args[1:]
+		if len(subargs) != 1 {
+			printHelp()
+		}
+		switch subargs[0] {
 		case "0", "1", "2", "3":
 			fmt.Fprintf(os.Stderr, "Decompression unsupported with format #%s", os.Args[2])
 		default:

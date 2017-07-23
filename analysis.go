@@ -29,7 +29,7 @@ type RecordAnalysis struct {
 	IField5FD map[uint64]uint64
 }
 
-func AnalyzeRecords(records []IntegerizedRecord) *RecordAnalysis {
+func analyzeRecords(records []IntegerizedRecord) *RecordAnalysis {
 	minDiffIField0 := ^uint64(0)
 	maxDiffIField0 := uint64(0)
 
