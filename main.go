@@ -53,7 +53,9 @@ func main() {
 			decompress0()
 		case "1":
 			decompress1()
-		case "2", "3":
+		case "2":
+			decompress2()
+		case "3":
 			fmt.Fprintf(os.Stderr, "Decompression unsupported with format #%s", os.Args[2])
 		default:
 			printHelp()
