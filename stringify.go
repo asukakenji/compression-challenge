@@ -2,15 +2,26 @@ package main
 
 import "fmt"
 
+// stringifyTime is the reverse of integerizeTime.
+// It converts an integer into a time string.
+// 0 <= time < 86,400
+// "00:00:00" <= return value <= "23:59:59"
 func stringifyTime(time uint64) string {
+	if time >= 86400 {
+		panic("time >= 86400")
+	}
 	second := time % 60
 	time /= 60
 	minute := time % 60
 	time /= 60
-	hour := time % 24
+	hour := time
 	return fmt.Sprintf("%02d:%02d:%02d", hour, minute, second)
 }
 
+// stringifyDecimal is the reverse of integerizeDecimal.
+// It convers an integer into a decimal string.
+// 0 <= decimal < 1,000,000
+// "0.000" <= return value <= "999.999"
 func stringifyDecimal(decimal uint64) string {
 	fractional := decimal % 1000
 	decimal /= 1000
@@ -25,6 +36,9 @@ func stringifyDecimal(decimal uint64) string {
 	return result
 }
 
+// stringifyEnumFixed is the reverse of integerizeEnumFixed.
+// It converts an integer into an enum string.
+// 0 <= enum <= 11
 func stringifyEnumFixed(enum uint64) string {
 	switch enum {
 	case 0:

@@ -15,6 +15,22 @@ type IntegerizedRecord struct {
 	IField5 uint64
 }
 
+// integerizeRecords converts a Record into an IntegerizedRecord.
+func integerizeRecords(integerizeEnumFunc func(string) uint64, records []Record) []IntegerizedRecord {
+	iRecords := make([]IntegerizedRecord, len(records))
+	for i, record := range records {
+		iRecords[i] = IntegerizedRecord{
+			IField0: integerizeTime(record.Field0),
+			//IField1: integerizeTime(record.Field1),
+			IField2: integerizeDecimal(record.Field2),
+			IField3: integerizeDecimal(record.Field3),
+			IField4: integerizeDecimal(record.Field4),
+			IField5: integerizeEnumFunc(record.Field5),
+		}
+	}
+	return iRecords
+}
+
 // integerizeTime converts a time string into an integer.
 // time in the format: "HH:MM:SS", where
 //     HH is the hour and 00 <= HH <= 23,
@@ -150,20 +166,4 @@ func integerizeEnum(enum string) uint64 {
 	enumMap[enum] = enumIndex
 	enumIndex++
 	return returnValue
-}
-
-// integerizeRecords converts a Record into an IntegerizedRecord.
-func integerizeRecords(integerizeEnumFunc func(string) uint64, records []Record) []IntegerizedRecord {
-	iRecords := make([]IntegerizedRecord, len(records))
-	for i, record := range records {
-		iRecords[i] = IntegerizedRecord{
-			IField0: integerizeTime(record.Field0),
-			//IField1: integerizeTime(record.Field1),
-			IField2: integerizeDecimal(record.Field2),
-			IField3: integerizeDecimal(record.Field3),
-			IField4: integerizeDecimal(record.Field4),
-			IField5: integerizeEnumFunc(record.Field5),
-		}
-	}
-	return iRecords
 }
