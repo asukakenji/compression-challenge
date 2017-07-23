@@ -28,14 +28,11 @@ func compress0() {
 	records := readRecords()
 	iRecords := integerizeRecords(integerizeEnumFixed, records)
 	for _, iRecord := range iRecords {
-		iRecord.IField2 -= DiffMaxMinIField234
-		iRecord.IField3 -= DiffMaxMinIField234
-		iRecord.IField4 -= DiffMaxMinIField234
 		r := encodeRecord0(
 			iRecord.IField0,
-			iRecord.IField2,
-			iRecord.IField3,
-			iRecord.IField4,
+			iRecord.IField2-DiffMaxMinIField234,
+			iRecord.IField3-DiffMaxMinIField234,
+			iRecord.IField4-DiffMaxMinIField234,
 			iRecord.IField5,
 		)
 		buf[0] = byte((r >> 56) & 0xff)

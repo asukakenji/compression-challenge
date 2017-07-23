@@ -30,14 +30,11 @@ func compress2() {
 	records := readRecords()
 	iRecords := integerizeRecords(integerizeEnumFixed, records)
 	for _, iRecord := range iRecords {
-		iRecord.IField2 -= DiffMaxMinIField234
-		iRecord.IField3 -= DiffMaxMinIField234
-		iRecord.IField4 -= DiffMaxMinIField234
 		r := encodeRecord2(
 			iRecord.IField0,
-			iRecord.IField2,
-			iRecord.IField3,
-			iRecord.IField4,
+			iRecord.IField2-DiffMaxMinIField234,
+			iRecord.IField3-DiffMaxMinIField234,
+			iRecord.IField4-DiffMaxMinIField234,
 			iRecord.IField5,
 		)
 		size = binary.PutUvarint(buf, r)

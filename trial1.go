@@ -14,16 +14,13 @@ func compress1() {
 	records := readRecords()
 	iRecords := integerizeRecords(integerizeEnumFixed, records)
 	for _, iRecord := range iRecords {
-		iRecord.IField2 -= DiffMaxMinIField234
-		iRecord.IField3 -= DiffMaxMinIField234
-		iRecord.IField4 -= DiffMaxMinIField234
 		size = binary.PutUvarint(buf, iRecord.IField0)
 		os.Stdout.Write(buf[0:size])
-		size = binary.PutUvarint(buf, iRecord.IField2)
+		size = binary.PutUvarint(buf, iRecord.IField2-DiffMaxMinIField234)
 		os.Stdout.Write(buf[0:size])
-		size = binary.PutUvarint(buf, iRecord.IField3)
+		size = binary.PutUvarint(buf, iRecord.IField3-DiffMaxMinIField234)
 		os.Stdout.Write(buf[0:size])
-		size = binary.PutUvarint(buf, iRecord.IField4)
+		size = binary.PutUvarint(buf, iRecord.IField4-DiffMaxMinIField234)
 		os.Stdout.Write(buf[0:size])
 		size = binary.PutUvarint(buf, iRecord.IField5)
 		os.Stdout.Write(buf[0:size])
