@@ -7,16 +7,16 @@ cd /path/to/the/source
 go build -o ffcompress .
 ```
 
-## Compressing a feed file using format 3
+## Compressing a feed file using format 4
 
 ```
-./ffcompress c 3 < feed_file.txt > compressed3.bin
+./ffcompress c 4 < feed_file.txt > compressed4.bin
 ```
 
-## Decompressing a feed file using format 3
+## Decompressing an format 4 archive
 
 ```
-./ffcompress d 3 < compressed3.bin > decompressed3.txt
+./ffcompress d 4 < compressed4.bin > decompressed4.txt
 ```
 
 ## Analyzing a feed file

@@ -70,3 +70,40 @@ func (w *BitWriter) WriteUint64(data uint64, bitCount uint) *BitWriter {
 // 	}
 // 	return w
 // }
+
+// BitReader reads bits from the internal buffer in big-endian order.
+type BitReader struct {
+	ByteIndex int
+	BitIndex  uint
+	Data      []byte
+}
+
+// NewBitReader returns a new BitReader.
+func NewBitReader(data []byte) *BitReader {
+	return &BitReader{
+		Data: data,
+	}
+}
+
+// ReadBool reads a single bit from the buffer.
+func (r *BitReader) ReadBool() bool {
+	if r.BitIndex == 8 {
+		r.ByteIndex++
+		r.BitIndex = 0
+	}
+	result := r.Data[r.ByteIndex]&(1<<(7-r.BitIndex)) != 0
+	r.BitIndex++
+	return result
+}
+
+// ReadUint64 writes bitCount bits of data from the buffer.
+func (r *BitReader) ReadUint64(bitCount uint) uint64 {
+	result := uint64(0)
+	for i := uint(0); i < bitCount; i++ {
+		result <<= 1
+		if r.ReadBool() {
+			result |= 0x1
+		}
+	}
+	return result
+}

@@ -6,6 +6,8 @@ func analyze() {
 	records := readRecords()
 	iRecords := integerizeRecords(integerizeEnumFixed, records)
 	analysis := analyzeRecords(iRecords)
+	fmt.Printf("Number of Records: %d\n", len(records))
+	fmt.Println()
 	fmt.Printf("Minimum Difference of Field 0: %d\n", analysis.MinDiffIField0)
 	fmt.Printf("Maximum Difference of Field 0: %d\n", analysis.MaxDiffIField0)
 	fmt.Println()

@@ -8,8 +8,8 @@ import (
 // printHelp prints the usage help to standard error and terminates the process.
 func printHelp() {
 	fmt.Fprintf(os.Stderr, "Usage:\n")
-	fmt.Fprintf(os.Stderr, "Compress:    %s [c] [0|1|2|3] < <file>\n", os.Args[0])
-	fmt.Fprintf(os.Stderr, "Decompress:  %s [d] [0|1|2|3] < <file>\n", os.Args[0])
+	fmt.Fprintf(os.Stderr, "Compress:    %s [c] [0|1|2|3|4] < <file>\n", os.Args[0])
+	fmt.Fprintf(os.Stderr, "Decompress:  %s [d] [0|1|2|3|4] < <file>\n", os.Args[0])
 	fmt.Fprintf(os.Stderr, "Analyze:     %s [a] < <file>\n", os.Args[0])
 	os.Exit(1)
 }
@@ -40,6 +40,8 @@ func main() {
 			compress2()
 		case "3":
 			compress3()
+		case "4":
+			compress4()
 		default:
 			printHelp()
 		}
@@ -57,6 +59,8 @@ func main() {
 			decompress2()
 		case "3":
 			decompress3()
+		case "4":
+			decompress4()
 		default:
 			printHelp()
 		}
