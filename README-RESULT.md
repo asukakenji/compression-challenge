@@ -16,10 +16,10 @@
 
 |               | File Size (bytes) | Obtained by                                         |
 |---------------|------------------:|-----------------------------------------------------|
-| **1st Trial** |         `738,242` | `go run *.go c 0 < feed_file.txt > compressed0.bin` |
-| **2nd Trial** |         `688,407` | `go run *.go c 1 < feed_file.txt > compressed1.bin` |
-| **3rd Trial** |         `561,906` | `go run *.go c 2 < feed_file.txt > compressed2.bin` |
-| **4th Trial** |         `439,681` | `go run *.go c 3 < feed_file.txt > compressed3.bin` |
+| **1st Trial** |         `564,152` | `./ffcompress c 0 < feed_file.txt > compressed0.bin` |
+| **2nd Trial** |         `688,407` | `./ffcompress c 1 < feed_file.txt > compressed1.bin` |
+| **3rd Trial** |         `561,906` | `./ffcompress c 2 < feed_file.txt > compressed2.bin` |
+| **4th Trial** |         `439,681` | `./ffcompress c 3 < feed_file.txt > compressed3.bin` |
 
 ### First Trial
 

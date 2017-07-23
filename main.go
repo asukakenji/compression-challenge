@@ -49,7 +49,9 @@ func main() {
 			printHelp()
 		}
 		switch subargs[0] {
-		case "0", "1", "2", "3":
+		case "0":
+			decompress0()
+		case "1", "2", "3":
 			fmt.Fprintf(os.Stderr, "Decompression unsupported with format #%s", os.Args[2])
 		default:
 			printHelp()

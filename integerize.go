@@ -100,16 +100,6 @@ func integerizeDecimal(decimal string) uint64 {
 	return uint64(i*1000) + uint64(f)
 }
 
-// integerizeDecimalFixed converts a decimal string into an integer.
-// decimal in the format: "[[i]i]i[.f[f[f]]]", where
-// i is an integral digit, and there are at most 3 digits,
-// the decimal point is optional,
-// f is a fractional digit, and there are at most 3 digits.
-// 0 <= return value < 1,000,000
-func integerizeDecimalFixed(decimal string) uint64 {
-	return integerizeDecimal(decimal) - 108009
-}
-
 // integerizeEnumFixed converts an enum string into an integer.
 // enum is just a string.
 // 0 <= return value <= 11

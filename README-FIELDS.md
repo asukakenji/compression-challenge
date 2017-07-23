@@ -44,20 +44,20 @@ This part is not used:
 - field3 the same as field4: 163 times
 
 The decimal number is converted into an integer by multiplying it by `1000` to
-ease handling. For example, `108.009` is treated as `108009`.
+ease handling. For example, `108.827` is treated as `108827`.
 It is done by parsing the integral part and the decimal part separately,
 instead of using the built-in floating point parser of Golang.
 Floating point is not a suitable choice since a lost of precision may occur
 when dealing with decimal numbers.
 
-The smallest number is `108.009`, it is encoded as `0`.
-The largest number is `109.672`, it is encoded as `1663`.
+The smallest number is `108.827`, it is encoded as `0`.
+The largest number is `109.672`, it is encoded as `845`.
 
 Note that:
+- 2 ** 9 = 512
 - 2 ** 10 = 1024
-- 2 ** 11 = 2048
 
-Therefore, each of these fields could be represented in a 11-bit field.
+Therefore, each of these fields could be represented in a 10-bit field.
 
 ## Sixth Field
 
