@@ -17,7 +17,7 @@
 |               | File Size (bytes) | Obtained by                                         |
 |---------------|------------------:|-----------------------------------------------------|
 | **1st Trial** |         `564,152` | `./ffcompress c 0 < feed_file.txt > compressed0.bin` |
-| **2nd Trial** |         `688,407` | `./ffcompress c 1 < feed_file.txt > compressed1.bin` |
+| **2nd Trial** |         `670,582` | `./ffcompress c 1 < feed_file.txt > compressed1.bin` |
 | **3rd Trial** |         `561,906` | `./ffcompress c 2 < feed_file.txt > compressed2.bin` |
 | **4th Trial** |         `439,681` | `./ffcompress c 3 < feed_file.txt > compressed3.bin` |
 
@@ -25,17 +25,21 @@
 
 By using the fixed-length scheme to store the time, each record could be stored in:
 
-    17 + 11*3 + 4 = 54 bits
+    17 + 10*3 + 4 = 51 bits
 
 To ease implementation, a 64-bit integer is used.
 
 The resultant is encoded into an unsigned 64-bit integer with "gaps". The gaps
-are suppose to ease human to read the code and speed up bit arithmetics (alignment).
+are suppose to ease human to read the code and speed up bit arithmetics (alignment):
+
+    20 + 12*3 + 4 = 60 bits
 
 ### Second Trial
 
 Each field is encoded into a variable-length integer with the built-in
 `"encoding/binary"` package in Golang.
+
+The result is in fact larger than the first trial.
 
 ### Thrid Trial
 
